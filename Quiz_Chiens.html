@@ -1,0 +1,410 @@
+<html>
+<head>
+	<title>Quiz Chiens</title>
+
+<script>
+INFO='!!DEBUT DE LA PARTIE A MODIFIER!!'
+
+Emplacement_a_modifier=['https://vetalfort-my.sharepoint.com/personal/thomas_pontheaux_vet-alfort_fr/Documents/Cours/ENVA/Quiz/']
+var Races_Groupe1 = ['berger australien', 'berger belge malinois', 'berger belge tervueren', 'berger belge groenendael', 'berger allemand','berger blanc suisse','berger de beauce','border collie','chien de berger des shetland','berger americain miniature','colley a poil long','berger hollandais','berger des pyrenees a poils longs','welsh corgi pembroke','chien loup tchecoslovaque','berger de brie','bouvier des flandres'];
+var Races_Groupe2 = ['berger des kangals','cane corso italiano', 'bouvier bernois', 'rottweiler', 'bulldog', 'boxer', 'dogue de bordeaux', 'shar pei', 'terre-neuve', 'chien de leonberg', 'dogue argentin', 'dogue allemand', 'saint-bernard', 'pinscher nain', 'doberman', 'chien de montagne des pyrenees', 'bullmastiff', 'schnauzer nain', 'bulldog continental'];
+var Races_Groupe3 = ['staffordshire bull terrier', 'american staffordshire bull terrier', 'yorkshire terrier', 'jack russell terrier', 'west highland white terrier', 'bull terrier', 'cairn terrier', 'terrier de chasse allemand', 'terrier ecossais', 'terrier du reverend russell', 'fox terrier a poil dur', 'border terrier', 'fox terrier a poil lisse', 'airedale terrier'];
+var Races_Groupe4 = ['teckel a poil dur', 'teckel a poil long', 'teckel a poil ras'];
+var Races_Groupe5 = ['chien finnois de laponie','spitz japonais','husky de siberie', 'spitz allemand', 'akita', 'samoyede', 'shiba', 'eurasier', 'chow chow', 'akita americain', "malamute de l'alaska", "keeshound"];
+var Races_Groupe6 = ['beagle', 'gascon saintongeois', 'basset fauve de bretagne', 'basset hound', 'dalmatien', 'porcelaine', 'griffon bleu de gascogne', 'griffon nivernais', 'rhodesian ridgeback', 'chien de saint-hubert'];
+var Races_Groupe7 = ['setter anglais', 'epagneul breton', 'braque de weimar', 'petit epagneul de munster', 'braque allemand a poil court', 'griffon korthals', 'pointer anglais', "draathar", 'braque francais', 'setter gordon', 'setter irlandais rouge'];
+var Races_Groupe8 = ['golden retriever', 'labrador', 'cocker spaniel anglais', 'springer anglais', "chien d'eau romagnol", 'retriever a poil plat'];
+var Races_Groupe9 = ['bouledogue francais', 'cavalier king charles', 'chihuahua', 'shih tzu', 'coton de tulear', 'carlin', 'caniche', 'boston terrier', 'bichon a poil frise', 'bichon maltais', 'bichon havanais', 'epagneul tibetain', 'lhassa apso', 'epagneul nain continental'];
+var Races_Groupe10 = ['whippet', 'petit levrier italien', 'barzoi', 'levrier irlandais', 'saluki', 'greyhound'];
+Version='2022/2023'
+
+INFO='!!FIN DE LA PARTIE A MODIFIER!!'
+
+
+var tmp = 0;
+Liste_Race = []
+Emplacement=[Emplacement_a_modifier+'Quiz%20Chiens/Data/QUIZ.jpg'] 
+
+function Apropos(){
+	alert(" 1) Appuyer sur connexion \n 2) Entrer le mot de passe indiqué sur la page EVE (Sinon, aucune photo ne s'affichera) \n 3) Fermer l'onglet OneDrive \n 4) Séléctionner le groupe de votre choix \n 5) Appuyer sur suivant \n 6) Entrer la race (ou non) sans accent ni majuscule puis appuyer sur 'suivant' ou la touche 'entrée' \n\n\n Quiz sur les races de Chiens \n Version : '+Version+' \n Edité par PONTHEAUX Thomas, Promo 2025 \n Photos extraites de Bing Image & Google Image \n Images vérifiées par Mme Bénédicte Grimard")
+	}
+
+function radio_button(){
+    var radios = document.getElementsByName('drone');
+    var groupe;
+    for(var i = 0; i < radios.length; i++){
+        if(radios[i].checked){ 
+            groupe = radios[i].value; 
+        }
+    }
+    if (groupe=="Groupe0"){
+        var num=entierAleatoire(1,10)
+        var num= num +""
+        var groupe="Groupe"+num;
+    }
+	return (groupe);
+}
+	
+function suivant(){
+	groupe=radio_button()
+	recup_entree(groupe)
+	}
+
+function recup_entree(groupe){
+	var x = document.getElementById('Champ_réponse').value.split('\n');
+	var canvas2 = document.getElementById("Canva_Message");
+	var ctx2 = canvas2.getContext("2d");
+	ctx2.font = "15pt Serif";
+	ctx2.textAlign = 'center';
+	var canvas3 = document.getElementById("Canva_Message2");
+	var ctx3 = canvas3.getContext("2d");
+	ctx3.font = "bold 20pt Arial";
+	ctx3.textAlign = 'center';
+	var r = document.getElementById('Champ_réponse')
+	r.value=''
+	if (x==Liste_Race[Liste_Race.length-1]){
+		ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+		ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
+		ctx2.fillText("BRAVO, Il s'agit bien d'un ", canvas2.width/2, canvas2.height/2+10);
+		ctx3.fillText(Liste_Race[Liste_Race.length-1], canvas3.width/2, canvas3.height/2);
+	} 
+	else {
+		ctx2.clearRect(0, 0, canvas2.width, canvas2.height);
+		ctx3.clearRect(0, 0, canvas3.width, canvas3.height);
+		ctx2.fillText("NON ! Regarde bien, il s'agit d'un ", canvas2.width/2, canvas2.height/2+10);
+		ctx3.fillText(Liste_Race[Liste_Race.length-1], canvas3.width/2, canvas3.height/2);
+	}
+	continu(groupe)
+}
+
+
+
+function continu(groupe){
+    var num_img = entierAleatoire(1,25)+''
+    var groupe = groupe
+    
+    if (groupe=="Groupe1"){
+		var race = entierAleatoire(0,Races_Groupe1.length - 1)
+		var race = Races_Groupe1[race]
+		Liste_Race.push(race)
+    }
+    
+    if (groupe=="Groupe2"){
+        var race = entierAleatoire(0,Races_Groupe2.length - 1)
+        var race = Races_Groupe2[race]
+		Liste_Race.push(race)
+    }
+
+    if (groupe=="Groupe3"){
+        var race = entierAleatoire(0,Races_Groupe3.length - 1)
+        var race = Races_Groupe3[race]
+		Liste_Race.push(race)
+    }
+    
+    if (groupe=="Groupe4"){
+        var race = entierAleatoire(0,Races_Groupe4.length - 1)
+        var race = Races_Groupe4[race]
+		Liste_Race.push(race)
+    }
+
+    if (groupe=="Groupe5"){
+        var race = entierAleatoire(0,Races_Groupe5.length - 1)
+        var race = Races_Groupe5[race]
+		Liste_Race.push(race)
+    }
+
+    if (groupe=="Groupe6"){
+        var race = entierAleatoire(0,Races_Groupe6.length - 1)
+        var race = Races_Groupe6[race]
+		Liste_Race.push(race)
+    }
+    
+    if (groupe=="Groupe7"){
+        var race = entierAleatoire(0,Races_Groupe7.length - 1)
+        var race = Races_Groupe7[race]
+		Liste_Race.push(race)
+    }
+
+    if (groupe=="Groupe8"){
+        var race = entierAleatoire(0,Races_Groupe8.length - 1)
+        var race = Races_Groupe8[race]
+		Liste_Race.push(race)
+    }
+    
+    if (groupe=="Groupe9"){
+        var race = entierAleatoire(0,Races_Groupe9.length - 1)
+        var race = Races_Groupe9[race]
+		Liste_Race.push(race)
+    }
+
+    if (groupe=="Groupe10"){
+        var race = entierAleatoire(0,Races_Groupe10.length - 1)
+        var race = Races_Groupe10[race]
+		Liste_Race.push(race)
+    }
+    
+    charger_image(groupe,race,num_img)
+    
+}
+
+function charger_image(groupe,race,num_img){
+	var img = new Image();
+	var img2 = new Image();
+	img2.src=Emplacement[0]
+	var a =charger_canva_image2(img2)
+	
+	var emplacement=Emplacement_a_modifier+'Quiz%20Chiens/Data/'+groupe+'/'+race+'/Image_'+num_img+'.jpg';
+	Emplacement[0]=emplacement
+	img.src=emplacement;
+	charger_canva_image(img);
+}
+
+function charger_canva_image(img){
+    var canvas = document.getElementById("Canva_Image1");
+	var ctx = canvas.getContext("2d");
+	ctx.clearRect(0, 0, canvas.width, canvas.height);
+	img.onload=function(){
+		canvas.height=parseInt((450/img.width)*img.height)
+	    ctx.drawImage(img,0,0,450,(450/img.width)*img.height)
+	}
+}
+
+function charger_canva_image2(img2){
+    var canvas5 = document.getElementById("Canva_Image2");
+	var ctx5 = canvas5.getContext("2d");
+	ctx5.clearRect(0, 0, canvas5.width, canvas5.height);
+	img2.onload=function(){
+		canvas5.height=parseInt((450/img2.width)*img2.height)
+		ctx5.drawImage(img2,0,0,450,(450/img2.width)*img2.height)
+	}
+	return ('3')
+}
+
+function entierAleatoire(min,max)
+{
+    var entier = Math.floor(Math.random() * (max - min + 1)) + min;
+    return entier
+}
+
+</script>	
+<style type="text/css">
+	<!--
+
+body {
+	margin: 30;  padding: 0;  margin-bottom: 15px;  margin-top: 8px;
+	background-color: #f7f7f7;
+}
+body, td {
+	font: 14px "Trebuchet MS", Verdana, Arial, Helvetica, sans-serif;
+	}
+
+#subTitle {
+	background: #000;  color: #fff;  padding: 6px;  font-weight: bold; 
+	}
+
+#Site a, #Site .current {
+	font-weight: bold;  color: #448;
+	}
+#Site a:link    { text-decoration: none; }
+#Site a:visited { text-decoration: none; }
+
+#Site .current { background-color: #ccd; }
+
+#Site a:hover   { text-decoration: none;  background-color: #fff;  color: #000; }
+#Site a:active  { text-decoration: none;  background-color: #ccc; }
+
+
+a:link    { text-decoration: underline;  color: #00f; }
+a:visited { text-decoration: underline;  color: #000; }
+a:hover   { text-decoration: underline;  color: #c00; }
+a:active  { text-decoration: underline; }
+
+#pageContent {
+	clear: both;
+	border-bottom: 6px solid #000;
+	padding: 10px;  padding-top: 20px;
+	line-height: 1.65em;
+	background-image: url(backblue.gif);
+	background-repeat: no-repeat;
+	background-position: top right;
+	}
+
+#pageContent, #Site {
+	background-color: #ede5e3;
+	}
+
+
+.imgLeft  { float: left;   margin-right: 10px;  margin-bottom: 10px; }
+.imgRight { float: right;  margin-left: 10px;   margin-bottom: 10px; }
+
+h1 { margin: 0;  font-weight: bold;  font-size: 2em; }
+
+.blak { background-color: #000; }
+.hide { display: none; }
+.tableWidth { min-width: 400px; }
+
+.tblRegular       { border-collapse: collapse; }
+.tblRegular td    { padding: 6px;  background-image: url(fade.gif);  border: 2px solid #99c; }
+.tblHeaderColor, .tblHeaderColor td { background: #99c; }
+.tblNoBorder td   { border: 0; }
+
+
+// -->
+</style>
+
+</head>
+
+<body>
+<table width="76%" border="0" align="center" cellspacing="0" cellpadding="3" class="tableWidth">
+	<tr>
+	<td id="subTitle"> </td>
+	</tr>
+</table>
+
+<table width="76%" border="0" align="center" cellspacing="0" cellpadding="0" class="tableWidth">
+<tr class="blak">
+<td>
+	<table width="100%" border="0" align="center" cellspacing="1" cellpadding="0">
+	<tr>
+	<td colspan="6"> 
+		<table width="100%" border="0" align="center" cellspacing="0" cellpadding="10">
+		<tr> 
+		<td id="pageContent"> 
+
+<h1 ALIGN=Center>Quiz sur les races de chiens </H1>
+<br>
+		</td>
+		</tr>
+		</table>
+	</td>
+	</tr>
+	</table>
+</td>
+</tr>
+</table>
+
+<table width="76%" border="1" align="center" valign="center" cellspacing="0" cellpadding="3">
+	<tr>
+	<td ALIGN=Center id="footer"><B> Aucune image n'apparait ? Clique sur ce bouton !</B>
+	<br>	
+	<input type="button" value="À propos et fonctionnement" onClick="Apropos()"> <button class="button" type="button" onClick="window.open('https://vetalfort-my.sharepoint.com/:f:/g/personal/thomas_pontheaux_vet-alfort_fr/ElSZ-fF1AAFNgJihfHQ77JYBFYzX0bmyWtWYQnEi2AdEpQ?e=4HfmnY', '_blank');">Connexion</button>
+	</td>
+	</tr>
+</table>
+<br>
+<br>
+
+<table width="920" border="3" align="center" valign="center" cellspacing="0" cellpadding="5">
+	<tr>
+	<td id="Rep" ALIGN=Center>
+	<br>
+	<label for="Champ_réponse">Quelle est la race de ce Chien ?</label>
+	<br>
+	<input type="text" id="Champ_réponse" name="Champ_réponse" size="30" onKeyPress="if(event.keyCode == 13) suivant();">
+	<br>
+	<br>
+	<input type="submit" value="Suivant" onClick="suivant()" style="height:50px; width:200px">
+	</td>
+	<td id="Choix_Groupe">
+	<p>Séléctionner le groupe sur lequel vous voulez être interrogé : </p>
+	<br>
+	<div>
+	  <input type="radio" id="Groupe1" name="drone" value="Groupe1">
+	  <label for="Groupe1"><B>Groupe 1 : Chiens de berger et de bouvier (hors chiens de bouvier suisses)</B></label>
+	</div>
+
+	<div>
+	  <input type="radio" id="Groupe2" name="drone" value="Groupe2">
+	  <label for="Groupe2"><B>Groupe 2 : Pinscher, Schnauzer, Molossoïdes, Bouvier suisses</B></label>
+	</div>
+
+	<div>
+	  <input type="radio" id="Groupe3" name="drone" value="Groupe3">
+	  <label for="Groupe3"><B>Groupe 3 : Terriers</B></label>
+	</div>
+
+	<div>
+	  <input type="radio" id="Groupe4" name="drone" value="Groupe4">
+	  <label for="Groupe4"><B>Groupe 4 : Teckels</B></label>
+	</div>
+
+	<div>
+	  <input type="radio" id="Groupe5" name="drone" value="Groupe5">
+	  <label for="Groupe5"><B>Groupe 5 : Chiens de type Spitz et de type primitif</B></label>
+	</div>
+
+	<div>
+	  <input type="radio" id="Groupe6" name="drone" value="Groupe6">
+	  <label for="Groupe6"><B>Groupe 6 : Chiens courants et de recherche au sang</B></label>
+	</div>
+
+	<div>
+	  <input type="radio" id="Groupe7" name="drone" value="Groupe7">
+	  <label for="Groupe7"><B>Groupe 7 : Chiens d’arrêt</B></label>
+	</div>
+
+	<div>
+	  <input type="radio" id="Groupe8" name="drone" value="Groupe8">
+	  <label for="Groupe8"><B>Groupe 8 : Chiens rapporteurs ou leveurs de gibier & chiens d’eau</B></label>
+	</div>
+
+	<div>
+	  <input type="radio" id="Groupe9" name="drone" value="Groupe9">
+	  <label for="Groupe9"><B>Groupe 9 : Chiens d'agrément et de compagnie</B></label>
+	</div>
+
+	<div>
+	  <input type="radio" id="Groupe10" name="drone" value="Groupe10">
+	  <label for="Groupe10"><B>Groupe 10 : Lévriers</B></label>
+	</div>
+
+	<div>
+	  <input type="radio" id="GroupeAll" name="drone" value="Groupe0"
+			 checked>
+	  <label for="GroupeAll"><B>Tous les groupes</B></label>
+	</div>
+	</td>
+	
+	</tr>
+</table>	
+	
+<table width="920" border="3" align="center" valign="center" cellspacing="0" cellpadding="20">
+	<tr>	
+	<td id="Image1">
+	<canvas id="Canva_Image1" width="450" height="600"></canvas>
+	</td>
+	
+	<td id="Image2">
+	<canvas id="Canva_Message" width="450" height="50"></canvas>
+	<canvas id="Canva_Message2" width="450" height="50"></canvas>
+	<canvas id="Canva_Image2" width="450" height="500"></canvas>
+	</td>
+	</tr>
+</table>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+<br>
+</body>
+</html>
+
+

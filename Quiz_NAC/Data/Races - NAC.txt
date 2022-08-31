@@ -1,0 +1,56 @@
+furet
+lapin geant des flandres
+lapin geant papillon francais
+lapin lievre belge
+lapin chinchilla
+lapin hollandais
+lapin papillon anglais
+lapin petit belier
+lapin nain
+rongeur cobaye
+chinchilla
+octodon
+rat d'egout
+souris blanche
+hamster dore
+hamster de chine
+hamster russe
+hamster de roborovski
+gerbille de mongolie
+ara chloroptere
+ara ararauna
+cacatoes a huppe blanche
+cacatoes a huppe jaune
+amazone a front bleu
+gris du gabon
+youyou du senegal
+perruche calopsitte
+perruche ondulee
+inseparable a gorge rose
+diamant mandarin
+tourterelle domestique
+pigeon domestique
+cygne tubercule
+oie commune
+canard de barbarie
+poule domestique
+caille de chine
+pelomedusa subrufa
+tortue d'hermann
+tortue grecque
+tortue bordee
+tortue de floride
+iguane vert
+cameleon casque
+cameleon furcifer
+agame barbu
+gecko leopard
+gecko a cretes
+boa constrictor
+python royal
+python molure
+python reticule
+python vert
+serpent des bles
+lampropeltis
+
