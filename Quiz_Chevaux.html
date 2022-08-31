@@ -6,7 +6,6 @@
 
 INFO='!!DEBUT DE LA PARTIE A MODIFIER!!'
 
-Emplacement_a_modifier=['https://vetalfort-my.sharepoint.com/personal/thomas_pontheaux_vet-alfort_fr/Documents/Cours/ENVA/Quiz/']
 var Chevaux_de_Sang = ['pur sang anglais', 'trotteur francais', 'arabe', 'camargue', 'merens', 'selle francais', 'pure race espagnole', 'lusitanien', 'quarter horse', 'american paint horse', 'irish cob', 'anglo-arabe', 'zangersheide'];
 var Chevaux_de_Trait = ['breton', 'comtois', 'percheron', 'boulonnais', 'ardennais', 'cob normand'];
 var Poneys = ['poney francais de selle', 'shetland', 'welsh', 'haflinger', 'connemara', 'pottok', 'new forest', 'fjord'];
@@ -16,7 +15,7 @@ INFO='!!FIN DE LA PARTIE A MODIFIER!!'
 
 var tmp = 0;
 Liste_Race = []
-Emplacement=[Emplacement_a_modifier+'Quiz%20Chevaux/Data/QUIZ.jpg']
+Emplacement=['Quiz_Chevaux/Data/QUIZ.jpg']
 
 function Apropos(){
 	alert(" 1) Appuyer sur connexion \n 2) Entrer le mot de passe indiqué sur la page EVE (Sinon, aucune photo ne s'affichera) \n 3) Fermer l'onglet OneDrive \n 4) Séléctionner le groupe de votre choix \n 5) Appuyer sur suivant \n 6) Entrer la race (ou non) sans accent ni majuscule puis appuyer sur 'suivant' ou la touche 'entrée' \n\n\n Quiz sur les races de Chevaux \n Version : '+Version+' \n Edité par PONTHEAUX Thomas, Promo 2025 \n Photos extraites de Bing Image & Google Image \n Images vérifiées par Mme Bénédicte Grimard")
@@ -112,7 +111,7 @@ function charger_image(groupe,race,num_img){
 	img2.src=Emplacement[0]
 	var a =charger_canva_image2(img2)
 	
-	var emplacement=Emplacement_a_modifier+'Quiz%20Chevaux/Data/'+groupe+'/'+race+'/Image_'+num_img+'.jpg';
+	var emplacement='Quiz_Chevaux/Data/'+groupe+'/'+race+'/Image_'+num_img+'.jpg';
 	Emplacement[0]=emplacement
 	img.src=emplacement;
 	charger_canva_image(img);
